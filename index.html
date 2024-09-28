@@ -5,8 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Calories Tracker</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
   
+  <!-- Navbar -->
+  <section>
+    <nav id="navbar" class="navbar navbar-expand fw-bold">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-binoculars"></i>
+          <span class="fw-bold heading-3">Trackalories</span>
+        </a>
+        <ul class="navbar-nav">
+            <!-- Modal -->
+            <li class="nav-item">
+            <!-- Button trigger modal -->
+              <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Set limit
+              </button>
+            <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Set Limit</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="limit-form">
+                        <label class="form-label" for="limit-input">Calories limit</label>
+                        <input class="form-control" type="number" id="limit-input"/>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success" id="save-limit">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <button id="reset-btn" class="btn btn-outline-dark ms-3">Reset</button>
+            </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
