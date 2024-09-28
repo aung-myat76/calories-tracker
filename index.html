@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./css/style.css"/>
 </head>
-<body>
+<body class="bg-light">
   
   <!-- Navbar -->
-  <section class="mb-3">
+  <section>
     <nav id="navbar" class="navbar navbar-expand fw-bold">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -23,15 +23,15 @@
             <!-- Modal -->
             <li class="nav-item">
             <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#setLimitModal">
                 Set limit
               </button>
             <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="setLimitModal" tabindex="-1" aria-labelledby="setLimitModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Set Limit</h1>
+                      <h1 class="modal-title fs-5" id="setLimitLabel">Set Limit</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -57,14 +57,14 @@
   </section>
   
   <!-- Status cards and progess bar -->
-  <section>
+  <section id="status">
     <div class="container my-2">
       <div class="row">
         <div class="col-6">
           <div class="card bg-success">
             <div class="card-body">
               <h5 class="card-title">Total Limit</h5>
-              <p class="card-text">2000</p>
+              <p class="card-text" id="limit">2000</p>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
           <div class="card bg-success">
             <div class="card-body">
               <h5 class="card-title">Gain/Loss</h5>
-              <p class="card-text">0</p>
+              <p class="card-text" id="gain-and-loss">0</p>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
           <div class="card">
             <div class="card-body">
               <small class="card-title fw-bold">Consumed</small>
-              <p class="card-text">0</p>
+              <p class="card-text" id="consumed">0</p>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
           <div class="card">
             <div class="card-body">
               <small class="card-title fw-bold">Work out</small>
-              <p class="card-text">0</p>
+              <p class="card-text" id="workout">0</p>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
           <div class="card">
             <div class="card-body">
               <small class="card-title fw-bold">Remain</small>
-              <p class="card-text">0</p>
+              <p class="card-text" id="remain">0</p>
             </div>
           </div>
         </div>
@@ -106,7 +106,109 @@
       <div class="row">
         <div class="col">
           <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bg-success w-75"></div>
+            <div class="progress-bar bg-success w-75" id="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Creating section -->
+  <section id="creation">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <input class="form-control my-3" type="text" id="filter-input" placeholder="Filter items" />
+        </div>
+      </div>
+      <div class="row my-3 container-fluid justify-content-center">
+        <div class="col-5">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#mealModal">
+            Create Meal
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="mealModal" tabindex="-1" aria-labelledby="mealModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="mealModalLabel">Set Meal</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="meal-form">
+                        <input id="meal-name" type="text" class="form-control mb-2" placeholder="Name" />
+                        <input id="meal-calories"class="form-control" type="number" placeholder="Calories"/>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success" id="save-meal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-5">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#workoutModal">
+                Create Workout
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="workoutModal" tabindex="-1" aria-labelledby="workoutLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Set Work out</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="workout-form">
+                        <input id="workout-name" type="text" class="form-control mb-2" placeholder="Name" />
+                        <input id="workout-calories" class="form-control" type="number" placeholder="Calories"/>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success" id="save-workout">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 my-2">
+          <div class="card border-3 border-danger">
+            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
+              <span>Lunch</span>
+              <span class="card-text">200</span>
+              <button class="btn">
+                <i class="bi bi-trash3 text-danger"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <div class="card border-3 border-success">
+            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
+              <span>Run</span>
+              <span class="card-text">350</span>
+              <button class="btn">
+                <i class="bi bi-trash3 text-danger"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <div class="card border-3 border-danger">
+            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
+              <span>Dinner</span>
+              <span class="card-text">300</span>
+              <button class="btn">
+                <i class="bi bi-trash3 text-danger"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
