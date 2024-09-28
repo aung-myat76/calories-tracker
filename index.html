@@ -12,7 +12,7 @@
 <body>
   
   <!-- Navbar -->
-  <section>
+  <section class="mb-3">
     <nav id="navbar" class="navbar navbar-expand fw-bold">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -55,6 +55,64 @@
       </div>
     </nav>
   </section>
+  
+  <!-- Status cards and progess bar -->
+  <section>
+    <div class="container my-2">
+      <div class="row">
+        <div class="col-6">
+          <div class="card bg-success">
+            <div class="card-body">
+              <h5 class="card-title">Total Limit</h5>
+              <p class="card-text">2000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card bg-success">
+            <div class="card-body">
+              <h5 class="card-title">Gain/Loss</h5>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <small class="card-title fw-bold">Consumed</small>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <small class="card-title fw-bold">Work out</small>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <small class="card-title fw-bold">Remain</small>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bg-success w-75"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="./app.js"></script>
 </body>
