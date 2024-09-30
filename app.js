@@ -53,7 +53,9 @@ class Tracker {
   
   _showProgress() {
     const progress = document.querySelector("#progress-bar");
-    const percent = (this._gainAndLoss / this._limit) * 100;
+    let percent = (this._gainAndLoss / this._limit) * 100;
+    
+    percent <= 0 ? percent = 0 : percent = percent;
     
     if (percent >= 100) {
       progress.classList.remove("bg-success");
@@ -63,7 +65,7 @@ class Tracker {
       progress.classList.add("bg-success");
     }
     
-    progress.style.width = `${ Math.min(percent, 100, 0) }%`;
+    progress.style.width = `${ Math.min(percent, 100) }%`;
   }
   
   addMeal(meal) {
@@ -124,9 +126,9 @@ class Workout {
 const tracker = new Tracker();
 const cheese = new Meal("cheese", 1000);
 tracker.addMeal(cheese);
-const cheese2 = new Meal("cheese", 100);
+const cheese2 = new Meal("cheese", 10000);
 tracker.addMeal(cheese2);
-const run = new Workout("run", 25000);
+const run = new Workout("run", 20);
 tracker.addWorkout(run);
 const run2 = new Workout("run", 250);
 tracker.addWorkout(run2);
