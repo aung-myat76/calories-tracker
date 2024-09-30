@@ -34,16 +34,16 @@
                       <h1 class="modal-title fs-5" id="setLimitLabel">Set Limit</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form id="limit-form">
                     <div class="modal-body">
-                      <form id="limit-form">
                         <label class="form-label" for="limit-input">Calories limit</label>
                         <input class="form-control" type="number" id="limit-input"/>
-                      </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success" id="save-limit">Save changes</button>
+                      <button type="submit" class="btn btn-success" id="save-limit">Save changes</button>
                     </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="card">
+          <div class="card" id="remain-card">
             <div class="card-body">
               <small class="card-title fw-bold">Remain</small>
               <p class="card-text" id="remain">0</p>
@@ -106,7 +106,7 @@
       <div class="row">
         <div class="col">
           <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bg-success w-75" id="progress-bar"></div>
+            <div class="progress-bar bg-success" id="progress-bar"></div>
           </div>
         </div>
       </div>
