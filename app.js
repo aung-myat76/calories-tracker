@@ -106,32 +106,45 @@ class Workout {
   }
 }
 
-// class App {
-//   constructor() {
-//     const tracker = new Tracker();
+class App {
+  constructor() {
+    this.tracker = new Tracker();
     
-//     document.querySelector("#limit-form").addEventListener.bind(this).("submit", this._setLimit)
-//   }
+    document.querySelector("#meal-form")
+      .addEventListener("submit", this._createItem.bind(this, "meal"));
+    
+    document.querySelector("#workout-form")
+      .addEventListener("submit", this._createItem.bind(this, "workout"));
+  }
   
-//   _setLimit(e) {
-//     e.preventDefault();
+  _createItem(type, e) {
+    e.preventDefault();
     
-//     const limitEl = document.querySelector("#limit");
-//     const limitInput = document.querySelector("#limit-input");
+    const name = document.querySelector(`#${ type }-name`);
+    const calories = document.querySelector(`#${ type }-calories`);
     
-//     limitEl.innerHTML = limitInput.value
-//   }
-// }
+    if (type === "meal") {
+      const meal = new Meal(name.value.toLowerCase(), +calories.value);
+      this.tracker.addMeal(meal);
+    } else {
+      const workout = new Workout(name.value.toLowerCase(), +calories.value);
+      this.tracker.addWorkout(workout);
+    }
+    
+    name.value = "";
+    calories.value = "";
+  }
+}
 
-const tracker = new Tracker();
-const cheese = new Meal("cheese", 1000);
-tracker.addMeal(cheese);
-const cheese2 = new Meal("cheese", 10000);
-tracker.addMeal(cheese2);
-const run = new Workout("run", 20);
-tracker.addWorkout(run);
-const run2 = new Workout("run", 250);
-tracker.addWorkout(run2);
+// const tracker = new Tracker();
+// const cheese = new Meal("cheese", 1000);
+// tracker.addMeal(cheese);
+// const cheese2 = new Meal("cheese", 100);
+// tracker.addMeal(cheese2);
+// const run = new Workout("run", 20);
+// tracker.addWorkout(run);
+// const run2 = new Workout("run", 250);
+// tracker.addWorkout(run2);
 
-// const app = new App()
+const app = new App()
 

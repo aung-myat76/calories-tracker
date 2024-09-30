@@ -41,7 +41,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-success" id="save-limit">Save changes</button>
+                      <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
                     </div>
                     </form>
                   </div>
@@ -129,25 +129,25 @@
           </button>
           <!-- Modal -->
           <div class="modal fade" id="mealModal" tabindex="-1" aria-labelledby="mealModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+              <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h1 class="modal-title fs-5" id="mealModalLabel">Set Meal</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <form id="meal-form">
-                        <input id="meal-name" type="text" class="form-control mb-2" placeholder="Name" />
-                        <input id="meal-calories"class="form-control" type="number" placeholder="Calories"/>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success" id="save-meal">Save changes</button>
-                    </div>
+                    <form id="meal-form">
+                      <div class="modal-body">
+                          <input id="meal-name" type="text" class="form-control mb-2" placeholder="Name"/>
+                          <input id="meal-calories" class="form-control" type="number" placeholder="Calories"/>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
-              </div>
+          </div>
         </div>
         <div class="col-5">
           <!-- Button trigger modal -->
@@ -162,22 +162,22 @@
                       <h1 class="modal-title fs-5" id="exampleModalLabel">Set Work out</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <form id="workout-form">
-                        <input id="workout-name" type="text" class="form-control mb-2" placeholder="Name" />
-                        <input id="workout-calories" class="form-control" type="number" placeholder="Calories"/>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success" id="save-workout">Save changes</button>
-                    </div>
+                    <form id="workout-form">
+                      <div class="modal-body">
+                          <input id="workout-name" type="text" class="form-control mb-2" placeholder="Name" />
+                          <input id="workout-calories" class="form-control" type="number" placeholder="Calories"/>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="items-list">
         <div class="col-12 my-2">
           <div class="card border-3 border-danger">
             <div class="card-body fw-bold d-flex align-items-center justify-content-between">
