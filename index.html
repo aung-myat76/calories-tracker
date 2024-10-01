@@ -54,6 +54,7 @@
         </ul>
       </div>
     </nav>
+    <div class="wrapper container"></div>
   </section>
   
   <!-- Status cards and progess bar -->
@@ -142,7 +143,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="save-meal">Save changes</button>
                       </div>
                     </form>
                   </div>
@@ -177,41 +178,7 @@
               </div>
         </div>
       </div>
-      <div class="row" id="items-list">
-        <div class="col-12 my-2">
-          <div class="card border-3 border-danger">
-            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
-              <span>Lunch</span>
-              <span class="card-text">200</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 my-2">
-          <div class="card border-3 border-success">
-            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
-              <span>Run</span>
-              <span class="card-text">350</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 my-2">
-          <div class="card border-3 border-danger">
-            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
-              <span>Dinner</span>
-              <span class="card-text">300</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row" id="items-list"></div>
     </div>
   </section>
   
