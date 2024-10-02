@@ -192,6 +192,30 @@ class App {
       
     document.querySelector("#filter-input")
       .addEventListener("input", this._filterItem.bind(this));
+      
+    document.querySelector("#limit-form")
+      .addEventListener("submit", this._setLimit.bind(this));
+      
+    document.querySelector("#reset-btn")
+      .addEventListener("click", this._reset.bind(this));
+  }
+  
+  _setLimit(e) {
+    e.preventDefault();
+    const limit = document.querySelector("#limit-input").value;
+    
+    this.tracker._limit = limit;
+    this.tracker.render();
+  }
+  
+  _reset() {
+    this.tracker._remain = this.tracker._limit;
+    this.tracker._gainAndLoss = 0;
+    this.tracker._meals = [];
+    this.tracker._workouts = [];
+    this.tracker.render();
+    document.querySelector("#items-list").innerHTML = "";
+    document.querySelector("#filter-input").value = "";
   }
   
   _createItem(type, e) {
@@ -245,17 +269,8 @@ class App {
   _filterItem(e) {
     const text = e.target.value.toLowerCase();
     const items = [this.tracker._meals, this.tracker._workouts].flat();
-    console.log(items)
     const filterItem = items.filter((item) => item.name.toLowerCase().indexOf(text) !== -1);
     this.tracker._showFilterItems(filterItem)
-    
-    // filterItem.forEach(item => {
-    //     // console.log(item);
-    //     item.type === "meal" ?
-    //     this.tracker._showMeals(item) : 
-    //     this.tracker._showWorkouts(item);
-      
-    // })
   }
 }
 
