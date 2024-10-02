@@ -69,49 +69,32 @@ class Tracker {
     progress.style.width = `${ Math.min(percent, 100) }%`;
   }
   
-  _showMeals() {
-    this._meals.forEach(item => {
-      
-      const meal = document.createElement("div");
-      
-      meal.innerHTML = `
-      <div class="col-12 my-2 meal" data-id=${ item.id }>
-          <div class="card border-3 border-danger">
-            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
-              <span>${ item.name }</span>
-              <span class="card-text">${ item.calories }</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>`;
-       document.querySelector("#items-list").appendChild(meal);
-    })
-    }
-    
-  _showWorkouts() {
-    // document.querySelector("#items-list").innerHTML = "";
-    
-    this._workouts.forEach(item => {
-      const workout = document.createElement("div");
-      
-      workout.innerHTML = `
-      <div class="col-12 my-2 workout" data-id=${ item.id }>
-          <div class="card border-3 border-success">
-            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
-              <span>${ item.name }</span>
-              <span class="card-text">${ item.calories }</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>`;
-       document.querySelector("#items-list").appendChild(workout);
+  _showMeals(meals=this._meals) {
+    meals.forEach(item => {
+      const meal = this.createItem(item, "meal");
+      document.querySelector("#items-list").appendChild(meal);
     })
     }
   
+  _showWorkouts(workouts=this._workouts) {
+    workouts.forEach(item => {
+      const workout = this.createItem(item, "workout");
+       document.querySelector("#items-list").appendChild(workout);
+    })
+    }
+    
+  _showFilterItems(items) {
+    document.querySelector("#items-list").innerHTML = "";
+    
+    items.forEach(item => {
+      let div;
+      item.type === "meal" ?
+      div = this.createItem(item, "meal") : 
+      div = this.createItem(item, "workout");
+      
+      document.querySelector("#items-list").appendChild(div);
+    })
+  }
   
   addMeal(meal) {
     this._meals.push(meal);
@@ -126,6 +109,25 @@ class Tracker {
     this._meals.splice(index, 1);
     
     this.render();
+  }
+  
+  createItem(item, type) {
+    const div = document.createElement("div");
+      
+      div.innerHTML = `
+      <div class="col-12 my-2 ${type}" data-id=${ item.id }>
+          <div class="card border-3 border-${ type === "meal" ? "danger" : "success" }">
+            <div class="card-body fw-bold d-flex align-items-center justify-content-between">
+              <span>${ item.name }</span>
+              <span class="card-text">${ item.calories }</span>
+              <button class="btn">
+                <i class="bi bi-trash3 text-danger"></i>
+              </button>
+            </div>
+          </div>
+        </div>`;
+    
+    return div;
   }
   
   addWorkout(workout) {
@@ -162,6 +164,7 @@ class Meal {
     this.id = Math.random(16).toString().slice(2);
     this.name = name;
     this.calories = calories;
+    this.type = "meal";
   }
 }
 
@@ -170,6 +173,7 @@ class Workout {
     this.id = Math.random(16).toString().slice(2);
     this.name = name;
     this.calories = calories;
+    this.type = "workout";
   }
 }
 
@@ -186,7 +190,8 @@ class App {
     document.querySelector("#items-list")
       .addEventListener("click", this._deleteItem.bind(this));
       
-    
+    document.querySelector("#filter-input")
+      .addEventListener("input", this._filterItem.bind(this));
   }
   
   _createItem(type, e) {
@@ -236,17 +241,23 @@ class App {
     
     item.remove();
   }
+  
+  _filterItem(e) {
+    const text = e.target.value.toLowerCase();
+    const items = [this.tracker._meals, this.tracker._workouts].flat();
+    console.log(items)
+    const filterItem = items.filter((item) => item.name.toLowerCase().indexOf(text) !== -1);
+    this.tracker._showFilterItems(filterItem)
+    
+    // filterItem.forEach(item => {
+    //     // console.log(item);
+    //     item.type === "meal" ?
+    //     this.tracker._showMeals(item) : 
+    //     this.tracker._showWorkouts(item);
+      
+    // })
+  }
 }
-
-// const tracker = new Tracker();
-// const cheese = new Meal("cheese", 1000);
-// tracker.addMeal(cheese);
-// const cheese2 = new Meal("cheese", 100);
-// tracker.addMeal(cheese2);
-// const run = new Workout("run", 20);
-// tracker.addWorkout(run);
-// const run2 = new Workout("run", 250);
-// tracker.addWorkout(run2);
 
 const app = new App()
 
