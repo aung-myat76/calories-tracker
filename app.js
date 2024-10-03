@@ -1,9 +1,10 @@
 class Tracker {
   constructor() {
-    this._limit = 2000;
+    this._limit = Storage.getLimit();
     this._remain = 0;
-    this._gainAndLoss = 0;
-    this._meals = [];
+    this._gainAndLoss = Storage.getGainAndLoss();
+    this._meals = Storage.getMeals();
+    console.log(this._meals)
     this._workouts = [];
     
     this._showLimit();
@@ -98,7 +99,9 @@ class Tracker {
   
   addMeal(meal) {
     this._meals.push(meal);
-    this._gainAndLoss += meal.calories
+    this._gainAndLoss += meal.calories;
+    Storage.updateGainAndLoss(this._gainAndLoss);
+    Storage.updateMeals(this._meals);
     this.render();
   }
   
@@ -106,8 +109,11 @@ class Tracker {
     const index = this._meals.findIndex((meal) => meal.id === id);
     
     this._gainAndLoss -= this._meals[index].calories;
+    Storage.updateGainAndLoss(this._gainAndLoss);
     this._meals.splice(index, 1);
+    Storage.updateMeals(this._meals);
     
+    document.querySelector("#filter-input").value = "";
     this.render();
   }
   
@@ -177,6 +183,52 @@ class Workout {
   }
 }
 
+class Storage {
+  static getLimit() {
+    if (localStorage.getItem("limit")) {
+      return +localStorage.getItem("limit");
+    } else {
+      localStorage.setItem("limit", 2000);
+      return +localStorage.getItem("limit");
+    }
+  }
+  
+  static setLimit(limit) {
+    localStorage.setItem("limit", limit);
+    return +localStorage.getItem("limit");
+  }
+  
+  static getGainAndLoss() {
+    if (localStorage.getItem("gainAndLoss")) {
+      return +localStorage.getItem("gainAndLoss");
+    } else {
+      localStorage.setItem("gainAndLoss", 0);
+      return +localStorage.getItem("gainAndLoss");
+    }
+  }
+  
+  static updateGainAndLoss(n) {
+    localStorage.setItem("gainAndLoss", n);
+  }
+  
+  static getMeals() {
+    if (JSON.parse(localStorage.getItem("meals"))) {
+      console.log(1)
+      return JSON.parse(localStorage.getItem("meals"));
+    } else {
+      console.log(0)
+      localStorage.setItem("meals", JSON.stringify([]));
+      return JSON.parse(localStorage.getItem("meals"));
+    }
+  }
+  
+  static updateMeals(meal) {
+    const item = JSON.stringify(meal)
+    localStorage.setItem("meals", item);
+  }
+  
+}
+
 class App {
   constructor() {
     this.tracker = new Tracker();
@@ -204,7 +256,7 @@ class App {
     e.preventDefault();
     const limit = document.querySelector("#limit-input").value;
     
-    this.tracker._limit = limit;
+    this.tracker._limit = +Storage.setLimit(limit);
     this.tracker.render();
   }
   
