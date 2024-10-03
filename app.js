@@ -1,7 +1,7 @@
 class Tracker {
   constructor() {
     this._limit = Storage.getLimit();
-    this._remain = 0;
+    this._remain = Storage.getLimit() - Storage.getGainAndLoss();
     this._gainAndLoss = Storage.getGainAndLoss();
     this._meals = Storage.getMeals();
     this._workouts = Storage.getWorkouts();
@@ -30,7 +30,7 @@ class Tracker {
     const remainEl = document.querySelector("#remain");
     const remainCard = document.querySelector("#remain-card");
     
-    this._remain = this._limit - this._gainAndLoss
+    // this._remain = this._limit - this._gainAndLoss
     
     if (this._remain <= 0) {
       remainCard.classList.add("bg-danger", "text-light");
@@ -202,6 +202,12 @@ class Storage {
     return +localStorage.getItem("limit");
   }
   
+  static reset() {
+    localStorage.removeItem("gainAndLoss");
+    localStorage.removeItem("meals");
+    localStorage.removeItem("workouts");
+  }
+  
   static getGainAndLoss() {
     if (localStorage.getItem("gainAndLoss")) {
       return +localStorage.getItem("gainAndLoss");
@@ -281,6 +287,8 @@ class App {
     this.tracker._gainAndLoss = 0;
     this.tracker._meals = [];
     this.tracker._workouts = [];
+    
+    Storage.reset();
     this.tracker.render();
     document.querySelector("#items-list").innerHTML = "";
     document.querySelector("#filter-input").value = "";
