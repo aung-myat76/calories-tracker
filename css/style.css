@@ -1,0 +1,25 @@
+section {
+  margin-bottom: 30px;
+}
+
+#navbar {
+  background-color: #38A3A5;
+}
+
+#status .card {
+  text-align: center;
+  font-weight: bold;
+}
+
+#status .col-6 .card {
+  color: white;
+}
+
+
+#status .card small {
+  font-size: 0.75em;
+}
+
+.bg-success span {
+  color: white;
+}
