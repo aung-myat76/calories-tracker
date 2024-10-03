@@ -331,15 +331,15 @@ class App {
   _deleteItem(e) {
     const item = e.target.closest(".col-12");
     const id = item.getAttribute("data-id");
-    let isMeal = item.classList.contains("meal");
+    let isMeal = item.classList.contains("meal") ;
     
-    if (isMeal) {
-      this.tracker.removeMeal(id);
-    } else {
+    if (e.target.classList.contains("btn-danger")) {
+      isMeal ?
+      this.tracker.removeMeal(id):
       this.tracker.removeWorkout(id);
+      
+      item.remove();
     }
-    
-    item.remove();
   }
   
   _filterItem(e) {
