@@ -1,7 +1,7 @@
 class Tracker {
   constructor() {
     this._limit = Storage.getLimit();
-    this._remain = Storage.getLimit() - Storage.getGainAndLoss();
+    this._remain = Storage.getLimit();
     this._gainAndLoss = Storage.getGainAndLoss();
     this._meals = Storage.getMeals();
     this._workouts = Storage.getWorkouts();
@@ -30,7 +30,7 @@ class Tracker {
     const remainEl = document.querySelector("#remain");
     const remainCard = document.querySelector("#remain-card");
     
-    // this._remain = this._limit - this._gainAndLoss
+    this._remain = Storage.getLimit() - Storage.getGainAndLoss();
     
     if (this._remain <= 0) {
       remainCard.classList.add("bg-danger", "text-light");
