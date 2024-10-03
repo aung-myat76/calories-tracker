@@ -125,8 +125,8 @@ class Tracker {
             <div class="card-body fw-bold d-flex align-items-center justify-content-between">
               <span>${ item.name }</span>
               <span class="card-text">${ item.calories }</span>
-              <button class="btn">
-                <i class="bi bi-trash3 text-danger"></i>
+              <button class="btn btn-danger fw-bold">
+                X
               </button>
             </div>
           </div>
