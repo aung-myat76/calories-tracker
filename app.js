@@ -4,8 +4,7 @@ class Tracker {
     this._remain = 0;
     this._gainAndLoss = Storage.getGainAndLoss();
     this._meals = Storage.getMeals();
-    console.log(this._meals)
-    this._workouts = [];
+    this._workouts = Storage.getWorkouts();
     
     this._showLimit();
     this._showGainAndLoss();
@@ -139,6 +138,8 @@ class Tracker {
   addWorkout(workout) {
     this._workouts.push(workout)
     this._gainAndLoss -= workout.calories;
+    Storage.updateGainAndLoss(this._gainAndLoss);
+    Storage.updateWorkouts(this._workouts);
     this.render()
   }
   
@@ -146,8 +147,11 @@ class Tracker {
     const index = this._workouts.findIndex((workout) => workout.id === id);
     
     this._gainAndLoss += this._workouts[index].calories;
+    Storage.updateGainAndLoss(this._gainAndLoss);
     this._workouts.splice(index, 1);
+    Storage.updateWorkouts(this._workouts);
     
+    document.querySelector("#filter-input").value = "";
     this.render();
   }
   
@@ -213,10 +217,8 @@ class Storage {
   
   static getMeals() {
     if (JSON.parse(localStorage.getItem("meals"))) {
-      console.log(1)
       return JSON.parse(localStorage.getItem("meals"));
     } else {
-      console.log(0)
       localStorage.setItem("meals", JSON.stringify([]));
       return JSON.parse(localStorage.getItem("meals"));
     }
@@ -225,6 +227,20 @@ class Storage {
   static updateMeals(meal) {
     const item = JSON.stringify(meal)
     localStorage.setItem("meals", item);
+  }
+  
+  static getWorkouts() {
+    if (JSON.parse(localStorage.getItem("workouts"))) {
+      return JSON.parse(localStorage.getItem("workouts"));
+    } else {
+      localStorage.setItem("workouts", JSON.stringify([]));
+      return JSON.parse(localStorage.getItem("workouts"));
+    }
+  }
+  
+  static updateWorkouts(workout) {
+    const item = JSON.stringify(workout)
+    localStorage.setItem("workouts", item);
   }
   
 }
